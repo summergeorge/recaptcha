@@ -2,8 +2,8 @@
 
 namespace Summergeorge\NoCaptcha;
 
-use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
+use Symfony\Component\HttpFoundation\Request;
 
 class NoCaptcha
 {
@@ -24,15 +24,14 @@ class NoCaptcha
      */
     protected $sitekey;
 
-     /**
+    /**
      * The recaptcha client api.
      *
      * @var string
      */
     protected $client_api;
 
-
-       /**
+    /**
      * The recaptcha verify url.
      *
      * @var string
@@ -56,9 +55,9 @@ class NoCaptcha
      *
      * @param string $secret
      * @param string $sitekey
-     * @param array $options
+     * @param array  $options
      */
-    public function __construct($secret, $sitekey,$client_api,$verify_url, $options = [])
+    public function __construct($secret, $sitekey, $client_api, $verify_url, $options = [])
     {
         $this->secret = $secret;
         $this->sitekey = $sitekey;
@@ -77,7 +76,8 @@ class NoCaptcha
     public function display($attributes = [])
     {
         $attributes = $this->prepareAttributes($attributes);
-        return '<div' . $this->buildAttributes($attributes) . '></div>';
+
+        return '<div'.$this->buildAttributes($attributes).'></div>';
     }
 
     /**
@@ -92,14 +92,14 @@ class NoCaptcha
      * Display a Invisible reCAPTCHA by embedding a callback into a form submit button.
      *
      * @param string $formIdentifier the html ID of the form that should be submitted.
-     * @param string $text the text inside the form button
-     * @param array $attributes array of additional html elements
+     * @param string $text           the text inside the form button
+     * @param array  $attributes     array of additional html elements
      *
      * @return string
      */
     public function displaySubmit($formIdentifier, $text = 'submit', $attributes = [])
     {
-        $functionName = 'onSubmit' . str_replace(['-', '=', '\'', '"', '<', '>', '`'], '', $formIdentifier);
+        $functionName = 'onSubmit'.str_replace(['-', '=', '\'', '"', '<', '>', '`'], '', $formIdentifier);
         $attributes['data-callback'] = $functionName;
         $attributes = $this->prepareAttributes($attributes);
 
@@ -110,15 +110,16 @@ class NoCaptcha
             $formIdentifier
         );
 
-        return $button . $javascript;
+        return $button.$javascript;
     }
 
     /**
-     * Render js source
+     * Render js source.
      *
-     * @param null $lang
-     * @param bool $callback
+     * @param null   $lang
+     * @param bool   $callback
      * @param string $onLoadClass
+     *
      * @return string
      */
     public function renderJs($lang = null, $callback = false, $onLoadClass = 'onloadCallBack')
@@ -146,7 +147,7 @@ class NoCaptcha
         }
 
         $verifyResponse = $this->sendRequestVerify([
-            'secret' => $this->secret,
+            'secret'   => $this->secret,
             'response' => $response,
             'remoteip' => $clientIp,
         ]);
@@ -155,6 +156,7 @@ class NoCaptcha
             // A response can only be verified once from google, so we need to
             // cache it to make it work in case we want to verify it multiple times.
             $this->verifiedResponses[] = $response;
+
             return true;
         } else {
             return false;
@@ -180,8 +182,9 @@ class NoCaptcha
      * Get recaptcha js link.
      *
      * @param string $lang
-     * @param boolean $callback
+     * @param bool   $callback
      * @param string $onLoadClass
+     *
      * @return string
      */
     public function getJsLink($lang = null, $callback = false, $onLoadClass = 'onloadCallBack')
@@ -189,10 +192,10 @@ class NoCaptcha
         // $client_api = static::CLIENT_API;
         $params = [];
 
-        $callback ? $this->setCallBackParams($params, $onLoadClass)  : false;
+        $callback ? $this->setCallBackParams($params, $onLoadClass) : false;
         $lang ? $params['hl'] = $lang : null;
 
-        return $this->client_api . '?'. http_build_query($params);
+        return $this->client_api.'?'.http_build_query($params);
     }
 
     /**
@@ -234,7 +237,7 @@ class NoCaptcha
         if (!isset($attributes['class'])) {
             $attributes['class'] = '';
         }
-        $attributes['class'] = trim('g-recaptcha ' . $attributes['class']);
+        $attributes['class'] = trim('g-recaptcha '.$attributes['class']);
 
         return $attributes;
     }

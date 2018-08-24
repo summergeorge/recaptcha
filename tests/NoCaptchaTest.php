@@ -47,8 +47,8 @@ class NoCaptchaTest extends PHPUnit_Framework_TestCase
         $simple = '<button data-callback="onSubmittest" data-sitekey="{site-key}" class="g-recaptcha"><span>submit</span></button>';
         $withAttrs = '<button data-theme="light" class="g-recaptcha 123" data-callback="onSubmittest" data-sitekey="{site-key}"><span>submit123</span></button>';
 
-        $this->assertEquals($this->captcha->displaySubmit('test'), $simple . $javascript);
-        $withAttrsResult = $this->captcha->displaySubmit('test','submit123',['data-theme' => 'light', 'class' => '123']);
-        $this->assertEquals($withAttrsResult, $withAttrs . $javascript);
+        $this->assertEquals($this->captcha->displaySubmit('test'), $simple.$javascript);
+        $withAttrsResult = $this->captcha->displaySubmit('test', 'submit123', ['data-theme' => 'light', 'class' => '123']);
+        $this->assertEquals($withAttrsResult, $withAttrs.$javascript);
     }
 }
