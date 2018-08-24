@@ -1,6 +1,6 @@
 No CAPTCHA reCAPTCHA
 ==========
-[![StyleCI](https://github.styleci.io/repos/146017269/shield?branch=master)](https://github.styleci.io/repos/146017269)
+[![StyleCI](https://github.styleci.io/repos/146020587/shield?branch=master)](https://github.styleci.io/repos/146020587)
 
 - Fork From: [https://github.com/summergeorge/no-captcha](https://github.com/summergeorge/no-captcha)
 - 增加CLIENT_API 和 VERIFY_URL 参数，符合中国国情
