@@ -7,6 +7,8 @@ No CAPTCHA reCAPTCHA
 
 ![recaptcha_anchor 2x](https://cloud.githubusercontent.com/assets/1529454/5291635/1c426412-7b88-11e4-8d16-46161a081ece.gif)
 
+[https://packagist.org/packages/summergeorge/no-captcha](https://packagist.org/packages/summergeorge/no-captcha)
+
 > For Laravel 4 use [v1](https://github.com/summergeorge/no-captcha/tree/v1) branch.
 
 ## Installation
